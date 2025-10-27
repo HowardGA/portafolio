@@ -13,6 +13,7 @@ import { About } from './components/sections/About'
 import { Projects } from './components/sections/Projects'
 import { Contact } from './components/sections/Contact'
 import { Timeline } from './components/sections/Timeline'
+import Clients from './components/sections/Clients'
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -45,6 +46,7 @@ function AppContent({ isLoaded, setIsLoaded, menuOpen, setMenuOpen }) {
           <About />
           <Projects />
           <Timeline />
+          <Clients />
           <Contact />
         </div>
         <div className='absolute inset-0 z-0'>

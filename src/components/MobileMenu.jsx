@@ -24,7 +24,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                             ${menuOpen 
                                 ? "opacity-100 translate-y-0" 
                                 : "opacity-0 translate-y-5"}
-                        `}
+                        `}  
                     onClick={() => setMenuOpen(false)}>
                     Home
                 </a>
@@ -49,6 +49,16 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                     onClick={() => setMenuOpen(false)}>
 
                     Projects
+                </a>
+                <a 
+                    href="#clients" 
+                     className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                            ${menuOpen 
+                                ? "opacity-100 translate-y-0" 
+                                : "opacity-0 translate-y-5"}
+                        `}
+                    onClick={() => setMenuOpen(false)}>
+                    Clients
                 </a>
                 <a 
                     href="#contact" 

@@ -46,11 +46,18 @@ export const Navbar = ({menuOpen, setMenuOpen}) => {
                             Projects
                         </motion.a>
                          <motion.a 
+                            href="#clients" 
+                            style={{ color }}
+                            >                          
+                            Clients
+                        </motion.a>
+                         <motion.a 
                             href="#contact" 
                             style={{ color }}
                             >                          
                             Contact
                         </motion.a>
+                        
                     </div>
                 </div>
             </div>
