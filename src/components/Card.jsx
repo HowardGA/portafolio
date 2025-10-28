@@ -7,7 +7,7 @@ export const Card = ({children}) => {
     return (
         <motion.div
             style={{border, boxShadow}}
-            className="rounded-xl p-20"
+            className="rounded-xl p-4 sm:p-6 md:p-8 flex flex-col gap-4"
         >
             {children}
         </motion.div>
