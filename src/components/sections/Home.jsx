@@ -41,22 +41,22 @@ export const Home = () => {
                    As a software developer ready to take on new challenges, I'm passionate about building clean, efficient, and user-friendly applications. I'm a quick learner and a strong communicator, always eager to expand my skills and collaborate on exciting projects.
                 </p>
                 <div className="flex justify-center space-x-4">
-                    <motion.button
-                        whileHover={{
-                            scale: 1.015
-                        }}
-                        whileTap={{
-                            scale: 0.985
-                        }}
-                        style={{
-                            border, boxShadow
-                        }}
-                        className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 text-gray-50 transition-colors hover:bg-gray-950/50"
-                        href="projects"
-                    >
-                        Contact Me
-                        <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12"/>
-                    </motion.button>
+                <motion.a 
+                    href="#contact"
+                    whileHover={{
+                        scale: 1.015
+                    }}
+                    whileTap={{
+                        scale: 0.985
+                    }}
+                    style={{
+                        border, boxShadow
+                    }}
+                    className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 text-gray-50 transition-colors hover:bg-gray-950/50"
+                >
+                    Contact Me
+                    <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12"/>
+                </motion.a>
                 </div>
             </div>
         </section>

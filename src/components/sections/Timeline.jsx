@@ -8,7 +8,7 @@ export const Timeline = () => {
       <div className="container mx-auto px-4 text-center z-10 px-4">
           <motion.h1 
           className="text-4xl md:text-6xl font-bold mb-6 "
-          style={{color}}>
+          >
                 My Journey
           </motion.h1>        
           <div className="relative wrap overflow-hidden p-10 h-full">

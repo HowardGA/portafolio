@@ -13,7 +13,7 @@ export const About = () => {
          <div className="text-center z-10 px-4">
              <motion.h1 
                 className="text-4xl md:text-6xl font-bold mb-6 "
-                style={{color}}>
+                >
                 Who am i?
             </motion.h1>
             

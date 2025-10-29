@@ -16,7 +16,7 @@ export default function Clients() {
             <div className="text-center z-10 px-4 w-full"> 
                 <motion.h1 
                     className="text-4xl md:text-6xl font-bold mb-10 "
-                    style={{color}}>
+                    >
                     My Clients
                 </motion.h1>   
  
