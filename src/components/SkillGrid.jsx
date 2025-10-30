@@ -1,14 +1,25 @@
-import { FaReact, FaHtml5, FaCss3Alt, FaJsSquare, FaNodeJs, FaPython } from 'react-icons/fa';
+import { FaReact, FaHtml5, FaCss3Alt, FaJsSquare, FaNodeJs, FaPython, FaLaravel, FaGitAlt, FaWifi } from 'react-icons/fa';
+import { SiNextdotjs, SiDjango, SiMysql, SiPostgresql, SiTypescript } from "react-icons/si";
+
 import { SiTailwindcss } from 'react-icons/si';
 import { SkillCard } from './SkillCard';
 const skills = [
-  { icon: <FaReact />, name: 'React', percentage: 60 },
+  { icon: <FaReact />, name: 'React', percentage: 65 },
   { icon: <FaHtml5 />, name: 'HTML5', percentage: 90 },
   { icon: <FaCss3Alt />, name: 'CSS3', percentage: 85 },
   { icon: <FaJsSquare />, name: 'JavaScript', percentage: 70 },
   { icon: <SiTailwindcss />, name: 'Tailwind CSS', percentage: 80 },
   { icon: <FaNodeJs />, name: 'Node.js', percentage: 55 },
   { icon: <FaPython />, name: 'Python', percentage: 75 },
+  { icon: <SiNextdotjs />, name: 'NextJS', percentage: 65 },
+  { icon: <FaLaravel />, name: 'Laravel REST', percentage: 65 },
+  { icon: <SiDjango />, name: 'Django REST', percentage: 65 },
+  { icon: <SiMysql />, name: 'MySQL', percentage: 75 },
+  { icon: <SiPostgresql />, name: 'PostgreSQL', percentage: 75 },
+  { icon: <SiTypescript />, name: 'TypeScript', percentage: 75 },
+  { icon: <FaGitAlt />, name: 'Git', percentage: 65 },
+  { icon: <FaWifi />, name: 'IoT', percentage: 65 },
+  
 ];
 
 export const SkillsGrid = () => {
