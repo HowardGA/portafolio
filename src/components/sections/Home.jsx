@@ -34,7 +34,7 @@ export const Home = () => {
                         }}
                     />
                 </motion.div>
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 ">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 mt-4">
                     Hi, I'm Howard Garcia
                 </h1>
                 <p className="text-gray-400 text-lg mb-8 max-w-lg mx-auto">
