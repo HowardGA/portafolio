@@ -1,6 +1,6 @@
 import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
-import PFP from "../../assets/pfp.jpeg";
+import PFP from "../../assets/pfp.png";
 import { useTheme } from "../../context/ThemeContext";
 
 export const Home = () => {
@@ -22,7 +22,7 @@ export const Home = () => {
                     style={{
                         border, boxShadow
                     }}
-                    className="w-48 h-48 rounded-full overflow-hidden shadow-lg items-center justify-center relative mx-auto"
+                    className="w-68 h-68 rounded-full overflow-hidden shadow-lg items-center justify-center relative mx-auto"
                 >
                     <img
                         src={PFP}

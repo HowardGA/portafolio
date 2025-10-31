@@ -3,13 +3,42 @@ import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useTheme } from '../context/ThemeContext';
 
-export const ContactForm = ({ formspreeAction }) => {
+export const ContactForm = ({ formspreeAction, onSuccess }) => {
     const contactInfo = [
         { icon: FiMail, title: "Email", value: "howardisaigarciaarreola@gmail.com", link: "mailto:howardisaigarciaarreola@gmail.com" },
         { icon: FiPhone, title: "Phone", value: "661 146 3164", link: "tel:+526611463164" },
         { icon: FiMapPin, title: "Location", value: "Playas de Rosarito, BC", link: "https://maps.app.goo.gl/YourMapLink" }
     ];
     const {border, boxShadow, color} = useTheme();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); 
+
+        const form = e.target;
+        const data = new FormData(form);
+
+        try {
+            const response = await fetch(formspreeAction, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                if (onSuccess) {
+                    onSuccess();
+                }
+                form.reset(); 
+            } else {
+                alert("Oops! There was a problem sending your message.");
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert("Oops! A network error occurred.");
+        }
+    };
 
     return (
         <section id="contact" className="py-20">
@@ -59,7 +88,7 @@ export const ContactForm = ({ formspreeAction }) => {
                     >
                         <h3 className="text-2xl font-semibold text-white mb-6">Send Me a Message</h3>
                         
-                        <form action={formspreeAction || "#"} method="POST" className="space-y-6">
+                        <form onSubmit={handleSubmit} method="POST" className="space-y-6">
                             
                             <input
                                 type="text"

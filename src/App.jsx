@@ -14,6 +14,7 @@ import { Projects } from './components/sections/Projects'
 import { Contact } from './components/sections/Contact'
 import { Timeline } from './components/sections/Timeline'
 import Clients from './components/sections/Clients'
+import Footer from './components/Footer'
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -48,10 +49,11 @@ function AppContent({ isLoaded, setIsLoaded, menuOpen, setMenuOpen }) {
           <Timeline />
           <Clients />
           <Contact />
+          <Footer />
         </div>
-        <div className='absolute inset-0 z-0'>
+        <div className='absolute inset-0 z-0 pointer-events-none'>
           <Canvas>
-            <Stars radius={70} count={3500} factor={6} fade speed={2}/>
+            <Stars radius={80} count={10000} factor={10} fade speed={2}/>
           </Canvas>
         </div>
       </motion.section>
