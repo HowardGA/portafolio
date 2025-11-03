@@ -1,5 +1,8 @@
 
+import { useLanguage } from "../context/LanguageContext";
 export const MobileMenu = ({menuOpen, setMenuOpen}) => {
+    const { lang, toggleLanguage, currentContent} = useLanguage();
+    const navbarContent = currentContent.nav;
 
     return (
         <div className={`fixed top-0 left-0 w-full bg-[rgba(10,10,10,0.8)] z-40 flex flex-col items-center justify-center 
@@ -26,7 +29,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                                 : "opacity-0 translate-y-5"}
                         `}  
                     onClick={() => setMenuOpen(false)}>
-                    Home
+                    {navbarContent.home}
                 </a>
                 <a 
                     href="#about" 
@@ -37,7 +40,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                         `}
                     onClick={() => setMenuOpen(false)}>
 
-                    About
+                    {navbarContent.about}
                 </a>
                 <a 
                     href="#projects" 
@@ -48,7 +51,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                         `}
                     onClick={() => setMenuOpen(false)}>
 
-                    Projects
+                    {navbarContent.projects}
                 </a>
                 <a 
                     href="#clients" 
@@ -58,7 +61,7 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                                 : "opacity-0 translate-y-5"}
                         `}
                     onClick={() => setMenuOpen(false)}>
-                    Clients
+                    {navbarContent.clients}
                 </a>
                 <a 
                     href="#contact" 
@@ -68,8 +71,15 @@ export const MobileMenu = ({menuOpen, setMenuOpen}) => {
                                 : "opacity-0 translate-y-5"}
                         `}
                     onClick={() => setMenuOpen(false)}>
-                    Contact
+                    {navbarContent.contact}
                 </a>
+                 <button
+                            onClick={toggleLanguage} 
+                            className="px-3 py-1 text-sm font-bold rounded-full border"
+                            // style={{border, boxShadow}}
+                        >
+                            {lang === 'en' ? 'ES' : 'EN'}
+                        </button>
         </div>
     );
 }

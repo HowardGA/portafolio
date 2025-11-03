@@ -3,10 +3,13 @@ import { useTheme } from "../../context/ThemeContext"
 import { ContactForm } from "../ContactForm";
 import { useState, useCallback } from "react";
 import ThankYouMessage from "../ThankYouMessage";
+import { useLanguage } from "../../context/LanguageContext";
 
 export const Contact = () => {
     const {color} = useTheme();
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const { currentContent } = useLanguage();
+    const contactContent = currentContent.contact;
 
     const handleFormSuccess = useCallback(() => {
         setIsSubmitted(true);
@@ -21,7 +24,7 @@ export const Contact = () => {
              <motion.h1 
                 className="text-4xl md:text-6xl font-bold mb-6 "
                 >
-                { isSubmitted ? 'Message Sent!' : 'Get in touch' }
+                { isSubmitted ? contactContent.formSubmittedTitle : contactContent.formTitle }
             </motion.h1>
                 {
                     isSubmitted ? (

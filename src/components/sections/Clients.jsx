@@ -1,11 +1,28 @@
-import { clients } from '../../data/clients';
+import { staticClients } from '../../data/staticClients';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
 import { Card } from '../Card';
 import { FiArrowRight } from 'react-icons/fi';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Clients() {
     const {border, boxShadow, color} = useTheme()
+    const { currentContent } = useLanguage(); 
+
+    const clientsContent = currentContent.clients; 
+    const buttonText = clientsContent.buttonText;
+    const combinedClients = clientsContent.items.map((textItem, index) => {
+        const staticItem = staticClients[index];
+
+        return {
+            ...textItem, 
+            image: staticItem.image,
+            techStack: staticItem.techStack,
+            link: staticItem.link,
+            buttonText: buttonText
+        };
+    });
+    
     return (
         <section
             id="clients" 
@@ -17,11 +34,11 @@ export default function Clients() {
                 <motion.h1 
                     className="text-4xl md:text-6xl font-bold mb-10 "
                     >
-                    My Clients
+                   {clientsContent.title}
                 </motion.h1>   
  
                     <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6 p-4 md:p-8">
-                        {clients.map((client, index) => (
+                        {combinedClients.map((client, index) => (
                               <Card key={index}>
                                 <motion.div
                                 className="flex flex-col items-center justify-start text-center p-4  h-full gap-1"
@@ -63,7 +80,7 @@ export default function Clients() {
                                         rel="noopener noreferrer"
                                         className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 transition-colors hover:bg-gray-950/50 z-20"
                                     >
-                                    Visit
+                                    {client.buttonText}
                                     <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12"/>
                                 </motion.a>
                                 )}

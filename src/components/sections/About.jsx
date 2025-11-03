@@ -1,10 +1,55 @@
-import { Card } from "../Card";
 import { motion } from "framer-motion";
 import { useTheme } from "../../context/ThemeContext";
 import { SkillsGrid } from "../SkillGrid";
+import { useLanguage } from "../../context/LanguageContext";
+
+const StyledSpan = ({ children, color, isStrong = false }) => (
+    <motion.span 
+        className={`text-white ${isStrong ? 'font-semibold' : ''}`} 
+        style={{ color }}
+    >
+        {children}
+    </motion.span>
+);
 
 export const About = () => {
-    const {color} = useTheme();
+    const { color } = useTheme();
+    const { currentContent } = useLanguage();
+
+    const aboutContent = currentContent.about;
+    
+    const replacements = {
+        HILIGHT_NAME: <StyledSpan color={color} isStrong={true}>Howard Garcia</StyledSpan>,
+        HILIGHT_WEBDEV: <StyledSpan color={color} isStrong={true}>web development</StyledSpan>,
+        HILIGHT_IOT: <StyledSpan color={color} isStrong={true}>IoT</StyledSpan>,
+        HILIGHT_ESP32: <StyledSpan color={color}>ESP32</StyledSpan>,
+        HILIGHT_ESP8266: <StyledSpan color={color}>ESP8266</StyledSpan>,
+        HILIGHT_ARDUINO: <StyledSpan color={color}>Arduino</StyledSpan>,
+        HILIGHT_FASTLEARNER: <StyledSpan color={color} isStrong={true}>fast learner</StyledSpan>,
+        HILIGHT_PROBLEMSOLVER: <StyledSpan color={color} isStrong={true}>curious problem-solver</StyledSpan>,
+        HILIGHT_OPENFORWORK: <StyledSpan color={color} isStrong={true}>open to work</StyledSpan>,
+    };
+
+    const renderParagraph = (text) => {
+        let parts = [text];
+        Object.entries(replacements).forEach(([placeholder, component]) => {
+            parts = parts.flatMap(part => {
+                if (typeof part !== 'string') return part;                
+                const segments = part.split(`<${placeholder}>`);
+                if (segments.length > 1) {
+                    return [
+                        segments[0],
+                        component,  
+                        segments[1] 
+                    ];
+                }
+                return part;
+            });
+        });
+
+        return parts.filter(p => p !== ''); 
+    };
+
     return (
          <section 
             id="about" 
@@ -14,7 +59,7 @@ export const About = () => {
              <motion.h1 
                 className="text-4xl md:text-6xl font-bold mb-6 "
                 >
-                Who am i?
+                {aboutContent.headline}
             </motion.h1>
             
             <motion.div
@@ -22,28 +67,23 @@ export const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                >
+            >
                 <p>
-                    Hi, I'm <motion.span className="text-white font-semibold" style={{color}}>Howard Garcia</motion.span>, a freshly graduated software developer eager to grow and take on new challenges. 
-                    I’m passionate about creating clean, efficient, and user-friendly applications, and I’m always looking for opportunities to learn from experienced teams and contribute to meaningful projects.
+                   {renderParagraph(aboutContent.paragraph1)}
                 </p>
 
                 <p>
-                    While most of my experience has been focused on <motion.span className="text-white font-semibold" style={{color}}>web development</motion.span>, I’m also fascinated by the world of <motion.span className="text-white font-semibold" style={{color}}>IoT (Internet of Things)</motion.span>. 
-                    I’ve worked with microcontrollers such as the <motion.span className="text-white" style={{color}}>ESP32</motion.span>, <motion.span className="text-white" style={{color}}>ESP8266</motion.span>, and <motion.span className="text-white" style={{color}}>Arduino</motion.span>, exploring how hardware and software can come together to create innovative solutions.
+                   {renderParagraph(aboutContent.paragraph2)}
                 </p>
 
                 <p>
-                    I consider myself a <motion.span className="text-white font-semibold" style={{color}}>fast learner</motion.span>, a <motion.span className="text-white font-semibold" style={{color}}>curious problem-solver</motion.span>, and someone who thrives in collaborative environments. 
-                    I’m currently <motion.span className="text-white font-semibold" style={{color}}>open to work</motion.span>, looking for a place where I can continue to learn, grow, and make an impact through technology.
+                    {renderParagraph(aboutContent.paragraph3)}
                 </p>
-        </motion.div>
-
+            </motion.div>
 
             <SkillsGrid />
 
          </div>
         </section>
-
-    )
+    );
 };

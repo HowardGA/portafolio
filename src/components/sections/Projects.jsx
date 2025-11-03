@@ -1,11 +1,10 @@
-import { Card } from "../Card";
 import { motion } from "framer-motion";
-import { useTheme } from "../../context/ThemeContext";
 import { ProjectsCarousel } from "../ProjectsCarousel";
-
+import { useLanguage } from "../../context/LanguageContext";
 
 export const Projects = () => {
-    const {color} = useTheme();
+     const {currentContent} = useLanguage();
+     const projectsContent = currentContent.projects;
     return (
          <section 
             id="projects" 
@@ -15,7 +14,7 @@ export const Projects = () => {
              <motion.h1 
                 className="text-4xl md:text-6xl font-bold mb-6 text-center"
                 >
-                Projects
+                {projectsContent.title}
             </motion.h1>
             <ProjectsCarousel />
          </div>

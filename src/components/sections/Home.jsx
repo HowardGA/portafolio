@@ -2,9 +2,13 @@ import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 import PFP from "../../assets/pfp.png";
 import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 export const Home = () => {
     const { border, boxShadow } = useTheme();
+    const {currentContent} = useLanguage();
+
+    const homeContent = currentContent.home;
 
     return (
         <section 
@@ -22,7 +26,7 @@ export const Home = () => {
                     style={{
                         border, boxShadow
                     }}
-                    className="w-68 h-68 rounded-full overflow-hidden shadow-lg items-center justify-center relative mx-auto"
+                    className="w-68 h-68 rounded-full overflow-hidden shadow-lg items-center justify-center relative mx-auto mt-10"
                 >
                     <img
                         src={PFP}
@@ -35,10 +39,10 @@ export const Home = () => {
                     />
                 </motion.div>
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 mt-4">
-                    Hi, I'm Howard Garcia
+                    {homeContent.greeting}
                 </h1>
                 <p className="text-gray-400 text-lg mb-8 max-w-lg mx-auto">
-                   As a software developer ready to take on new challenges, I'm passionate about building clean, efficient, and user-friendly applications. I'm a quick learner and a strong communicator, always eager to expand my skills and collaborate on exciting projects.
+                   {homeContent.title}
                 </p>
                 <div className="flex justify-center space-x-4">
                 <motion.a 
@@ -54,7 +58,7 @@ export const Home = () => {
                     }}
                     className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 text-gray-50 transition-colors hover:bg-gray-950/50"
                 >
-                    Contact Me
+                    {homeContent.cta}
                     <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12"/>
                 </motion.a>
                 </div>

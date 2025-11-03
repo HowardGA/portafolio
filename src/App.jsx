@@ -14,7 +14,8 @@ import { Projects } from './components/sections/Projects'
 import { Contact } from './components/sections/Contact'
 import { Timeline } from './components/sections/Timeline'
 import Clients from './components/sections/Clients'
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+import { LanguageProvider } from './context/LanguageContext'
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,7 +24,9 @@ function App() {
   return (
     <>
       <ThemeProvider>
-        <AppContent isLoaded={isLoaded} setIsLoaded={setIsLoaded} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <LanguageProvider>
+          <AppContent isLoaded={isLoaded} setIsLoaded={setIsLoaded} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        </LanguageProvider>
       </ThemeProvider>
     </>
   );

@@ -1,9 +1,12 @@
     import { FaGithub, FaLinkedin } from "react-icons/fa";
     import { motion } from "framer-motion";
     import { useTheme } from "../context/ThemeContext";
+    import { useLanguage } from "../context/LanguageContext";
 
     export default function Footer () {
         const {color} = useTheme(); 
+        const {currentContent} = useLanguage();
+        const footerContent = currentContent.footer;
         const socialLinks = [
             { icon: <FaGithub/>, href: "https://github.com/HowardGA" },
             { icon: <FaLinkedin/>, href: "https://www.linkedin.com/in/howard-garcia-936607289/" },
@@ -20,7 +23,7 @@
                                 Howard Garcia
                             </h4>
                             <p className="text-sm max-w-sm">
-                                Crafting seamless digital experiences one component at a time.
+                                {footerContent.tagline}
                             </p>
                         </div>
 
@@ -43,7 +46,7 @@
                     </div>
                     <motion.div style={{color}} className="border-t mt-5"/>
                     <div className="text-center text-sm border-gray-800 pt-6 mt-auto">
-                        &copy; {new Date().getFullYear()} Howard Garcia. All rights reserved.
+                        &copy; {new Date().getFullYear()} Howard Garcia. {footerContent.copyright}
                     </div>
                 </div>
             </footer>

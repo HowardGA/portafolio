@@ -110,15 +110,35 @@ import warebox20 from '../assets/warebox/20.jpeg';
 import warebox21 from '../assets/warebox/21.jpeg';
 import warebox22 from '../assets/warebox/22.jpeg';
 import warebox23 from '../assets/warebox/23.jpeg';
+import simpInv1 from '../assets/inventory/1.png';
+import simpInv2 from '../assets/inventory/2.png';
+import simpInv4 from '../assets/inventory/4.png';
+import simpInv5 from '../assets/inventory/5.png';
+import simpInv6 from '../assets/inventory/6.png';
+import simpInv7 from '../assets/inventory/7.png';
+import simpInv8 from '../assets/inventory/8.png';
+import simpInv9 from '../assets/inventory/9.png';
+import simpInv10 from '../assets/inventory/10.png';
+import simpInv11 from '../assets/inventory/11.png';
+import bookGen1 from '../assets/bookgenerator/1.png';
+import bookGen2 from '../assets/bookgenerator/2.png';
+import bookGen3 from '../assets/bookgenerator/3.png';
+import task41 from '../assets/task4/1.png';
+import task42 from '../assets/task4/2.png';
+import task43 from '../assets/task4/3.png';
+import task44 from '../assets/task4/4.png';
+import task45 from '../assets/task4/5.png';
+import dice1 from '../assets/dice/1.png';
+import dice2 from '../assets/dice/2.png';
+import dice3 from '../assets/dice/3.png';
+import dice4 from '../assets/dice/4.png';
+import dice5 from '../assets/dice/5.png';
+import dice6 from '../assets/dice/6.png';
 
-
-export const projects = [
+export const staticProjects = [
     {
-        title: "Imjuver Conecta",
-        subtitle: "Content Manager",
-        description: "Content Manager web app for the government, designed to show posts, job listings, contacts, proposals, and courses for youth where they can apply and use them directly in the web app.",
         techStack: ["React", "Node.js", "Express", "Prisma", "Postgre"],
-        link: "https://project-alpha-demo.com",
+        link: "https://github.com/HowardGA/IMJUVER-Conecta",
         galleryImages: [
             imgIC1,
             imgIC2,
@@ -154,11 +174,8 @@ export const projects = [
         ]
     },
     {
-        title: "WareBox",
-        subtitle: "Logistics web app",
-        description: "Web application used to plan routes, track stock in different warehouses, manage a trailer truck fleet, provide live tracking, and handle restocking.",
         techStack: ["React", "Laravel REST", "Firebase", "Postgre", "Google Maps"],
-        link: "https://project-alpha-demo.com",
+        link: "https://github.com/WareBox-Logistics",
         galleryImages: [
             warebox,
             warebox1, 
@@ -187,11 +204,8 @@ export const projects = [
         ]
     },
     {
-        title: "WareBox mobile app",
-        subtitle: "Route Navigation for drivers",
-        description: "Native Android app that allows driver employees to see their routes for the day, departures, and estimated arrival times, and includes GPS navigation for the created route in the web app. The app can scan the boxes of the cargo and show contents for inventory users, and it also registers boxes and their contents linked to an order.",
         techStack: ["Jetpack Compose", "Google Maps"],
-        link: "https://project-alpha-demo.com",
+        link: "https://github.com/HowardGA/WareBox-Mobile-App",
         galleryImages: [
             imgWareboxApp1,
             imgWareboxApp2,
@@ -209,11 +223,8 @@ export const projects = [
         ]
     },
     {
-        title: "Washington",
-        subtitle: "Inventory web app",
-        description: "Inventory web app for the fictional cleaning supplies company, 'Washington.' Independent stores can create restock requests to the main warehouse that pass through different states when the request is being prepared. It shows the main inventory and individual store inventories.",
         techStack: ["React", "WebSockets", "Socket.io", "Express"],
-        link: "https://project-beta-demo.com",
+        link: "https://github.com/WashintonDev",
          galleryImages: [
             imgW1,
             imgW2,
@@ -237,11 +248,8 @@ export const projects = [
          ]
     },
     {
-        title: "Washington Mobile App",
-        subtitle: "Inventory native app",
-        description: "Working with the same Washington API, this app lets inventory users scan QR/bar codes to view item information. It also processes stock requests from the main web app, allowing users to scan requests, update, confirm/cancel their status, or log their arrival.",
         techStack: ["Jetpack Compose"],
-        link: "https://project-beta-demo.com",
+        link: "https://github.com/HowardGA/Washinton-Mobile",
          galleryImages: [
             imgWA1,
             imgWA2,
@@ -256,11 +264,8 @@ export const projects = [
          ]
     },
     {
-        title: "Washington Wearable App",
-        subtitle: "Simple notificarion wearable app",
-        description: "Working with the same Washington API, this app notifies selected user roles of the restock request being made, allowing them to confirm or cancel it. Users can also see at first glance the contents of the orders and related information.",
         techStack: ["Jetpack Compose"],
-        link: "https://project-beta-demo.com",
+        link: "https://github.com/HowardGA/Washinton-WearOs",
          galleryImages: [
             imgWWA1,
             imgWWA2,
@@ -271,12 +276,8 @@ export const projects = [
          ]
     },
     {
-        title: "SmartPipes",
-        subtitle: "Inventory - Production Line",
-        description: "Web app for the fictional 'SmartPipes' hydroponic systems company where users can see the inventory of specific warehouses, create restock requests, and manage 'factories' that have production lines. An assembly order can be made to a specific factory and production line where the user, based on the stock, can create a set number of hydroponic systems and retrieve the necessary materials from the warehouses that have them.",
-        image: imgSP1,
         techStack: ["React", "Django REST", "Postgre"],
-        link: "https://project-beta-demo.com",
+        link: "https://github.com/SmartPipes",
         galleryImages: [
             imgSP1,
             imgSP2,
@@ -287,6 +288,54 @@ export const projects = [
             imgSP7,
             imgSP8,
             imgSP9,
+        ]
+    },
+    {
+        techStack: ["React", "Typescript"],
+        link: "https://github.com/HowardGA/Inventario-React-Ts",
+        galleryImages: [
+            simpInv1,
+            simpInv2,
+            simpInv4,
+            simpInv5,
+            simpInv6,
+            simpInv7,
+            simpInv8,
+            simpInv9,
+            simpInv10,
+            simpInv11
+        ]
+    },
+    {
+        techStack: ["React", "NodeJS"],
+        link: "https://book-generator-gamma.vercel.app/",
+        galleryImages: [
+            bookGen1,
+            bookGen2,
+            bookGen3
+        ]
+    },
+    {
+        techStack: ["React", "NodeJS"],
+        link: "https://github.com/HowardGA/task-4-together",
+        galleryImages: [
+            task41,
+            task42,
+            task43,
+            task44,
+            task45
+        ]
+    },
+    {
+        techStack: ["NodeJS"],
+        link: "https://github.com/HowardGA/dice-game",
+        galleryImages: [
+            dice1,
+            dice2,
+            dice3,
+            dice4,
+            dice5,
+            dice6
         ]
     }
 ];

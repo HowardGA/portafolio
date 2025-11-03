@@ -2,9 +2,13 @@ import { useEffect } from "react";
 import { FaHamburger } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
 
 export const Navbar = ({menuOpen, setMenuOpen}) => {
-    const { color } = useTheme();
+    const { color, boxShadow, border } = useTheme();
+    const { lang, toggleLanguage, currentContent} = useLanguage();
+
+    const navbarContent = currentContent.nav;
 
     useEffect(() => {
         document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -29,35 +33,41 @@ export const Navbar = ({menuOpen, setMenuOpen}) => {
                             href="#home" 
                             style={{ color }}
                             >
-                            Home
+                            {navbarContent.home}
                         </motion.a>
                         <motion.a 
                             href="#about" 
                             style={{ color }}
                             >
 
-                            About
+                             {navbarContent.about}
                         </motion.a>
                          <motion.a 
                             href="#projects" 
                             style={{ color }}
                             >
 
-                            Projects
+                             {navbarContent.projects}
                         </motion.a>
                          <motion.a 
                             href="#clients" 
                             style={{ color }}
                             >                          
-                            Clients
+                             {navbarContent.clients}
                         </motion.a>
                          <motion.a 
                             href="#contact" 
                             style={{ color }}
                             >                          
-                            Contact
+                             {navbarContent.contact}
                         </motion.a>
-                        
+                        <motion.button
+                            onClick={toggleLanguage} 
+                            className="px-3 py-1 text-sm font-bold rounded-full border"
+                            style={{border, boxShadow}}
+                        >
+                            {lang === 'en' ? 'ES' : 'EN'}
+                        </motion.button>
                     </div>
                 </div>
             </div>
