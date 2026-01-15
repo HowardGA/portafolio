@@ -1,6 +1,6 @@
 import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
-import PFP from "../../assets/pfp.png";
+import PFP from "../../assets/pfp2.jpg";
 import { useTheme } from "../../context/ThemeContext";
 import { useLanguage } from "../../context/LanguageContext";
 
