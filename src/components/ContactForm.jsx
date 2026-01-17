@@ -1,7 +1,6 @@
 import React from 'react';
 import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext'; 
 
 const staticContactDetails = [
@@ -20,7 +19,6 @@ export const ContactForm = ({ formspreeAction, onSuccess }) => {
         }));
 
     const formText = contactContent.form;
-    const {border, boxShadow, color} = useTheme();
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
@@ -52,101 +50,117 @@ export const ContactForm = ({ formspreeAction, onSuccess }) => {
     };
 
     return (
-        <section id="contact" className="py-20">
-            <div className="container mx-auto px-4">
-                <div className="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto">
-                    
-               <motion.div 
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="lg:w-1/3 p-6 rounded-xl bg-gray-800 shadow-2xl"
-                    style={{border, boxShadow}}
-                >
-                    <h3 className="text-2xl font-semibold text-white mb-6 text-left">{contactContent.detailsTitle}</h3>                     
-                    <div className="space-y-8">
-                        {localizedContactInfo.map((item, index) => (
-                            <div key={index} className="flex flex-col items-start gap-2 border-b border-gray-700 pb-4"> 
-                                
-                                <div className="flex items-center gap-3">
-                                    <item.icon className="w-8 h-8 text-indigo-400 flex-shrink-0" /> 
-                                    
-                                    <p className="text-lg font-bold text-gray-200">{item.title}</p>
-                                </div>
-                                
-                                <motion.a 
-                                    href={item.link} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    className="text-gray-400 hover:text-indigo-400 transition ml-11 text-base" 
-                                    style={{color}}
-                                >
-                                    {item.value}
-                                </motion.a>
+       <div className="flex flex-col lg:flex-row border-2 border-black bg-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">            
+            <motion.div 
+                className="lg:w-1/3 p-8 border-b-2 lg:border-b-0 lg:border-r-2 border-black bg-[#f9f7f2]"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+            >
+                <h3 className="text-2xl font-bold uppercase tracking-tighter mb-8 italic border-b border-black pb-2">
+                    {contactContent.detailsTitle}
+                </h3>                     
+                <div className="space-y-10">
+                    {localizedContactInfo.map((item, index) => (
+                        <div key={index} className="group"> 
+                            <div className="flex items-center gap-3 mb-1">
+                                <item.icon className="w-5 h-5 text-black" /> 
+                                <p className="font-mono text-xs uppercase font-bold tracking-widest">{item.title}</p>
                             </div>
-                        ))}
-                    </div>
-                </motion.div>
-
-                    <motion.div 
-                        initial={{ x: 50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="lg:w-2/3 p-8 rounded-xl bg-gray-800 shadow-2xl"
-                        style={{border, boxShadow}}
-                    >
-                        <h3 className="text-2xl font-semibold text-white mb-6">{formText.messageTitle}</h3>
-                        
-                        <form onSubmit={handleSubmit} method="POST" className="space-y-6">
                             
+                            <a 
+                                href={item.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-lg font-serif italic hover:bg-black hover:text-white px-1 transition-colors block ml-8" 
+                            >
+                                {item.value}
+                            </a>
+                        </div>
+                    ))}
+                </div>
+                
+                <div className="mt-20 pt-8 border-t border-black border-dashed">
+                    <p className="font-mono text-[10px] uppercase leading-tight text-gray-500">
+                        * All correspondence is handled within 24 business hours.
+                    </p>
+                </div>
+            </motion.div>
+
+            <motion.div 
+                className="lg:w-2/3 p-8 bg-white"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+            >
+                <h3 className="text-2xl font-bold uppercase tracking-tighter mb-8">
+                    {formText.messageTitle}
+                </h3>
+                
+                <form onSubmit={handleSubmit} className="space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="relative">
                             <input
                                 type="text"
                                 name="name"
-                                placeholder={formText.placeholderName}
                                 required
-                                className="w-full p-4 rounded-lg bg-gray-700 text-white border border-gray-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+                                className="peer w-full bg-transparent border-b-2 border-black py-2 focus:outline-none font-serif text-lg placeholder-transparent"
+                                placeholder={formText.placeholderName}
+                                id="name"
                             />
-                            
+                            <label htmlFor="name" className="absolute left-0 -top-3.5 font-mono text-[10px] uppercase font-bold transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-black">
+                                {formText.placeholderName}
+                            </label>
+                        </div>
+
+                        <div className="relative">
                             <input
                                 type="email"
                                 name="_replyto" 
+                                required
+                                className="peer w-full bg-transparent border-b-2 border-black py-2 focus:outline-none font-serif text-lg placeholder-transparent"
                                 placeholder={formText.placeholderEmail}
-                                required
-                                className="w-full p-4 rounded-lg bg-gray-700 text-white border border-gray-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
                             />
+                            <label className="absolute left-0 -top-3.5 font-mono text-[10px] uppercase font-bold transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-black">
+                                {formText.placeholderEmail}
+                            </label>
+                        </div>
+                    </div>
 
-                            <input
-                                type="text"
-                                name="subject"
-                                placeholder={formText.placeholderSubject}
-                                required
-                                className="w-full p-4 rounded-lg bg-gray-700 text-white border border-gray-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
-                            />
+                    <div className="relative">
+                        <input
+                            type="text"
+                            name="subject"
+                            required
+                            className="peer w-full bg-transparent border-b-2 border-black py-2 focus:outline-none font-serif text-lg placeholder-transparent"
+                            placeholder={formText.placeholderSubject}
+                        />
+                        <label className="absolute left-0 -top-3.5 font-mono text-[10px] uppercase font-bold transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-black">
+                            {formText.placeholderSubject}
+                        </label>
+                    </div>
 
-                            <textarea
-                                name="message"
-                                placeholder={formText.placeholderMessage}
-                                rows="5"
-                                required
-                                className="w-full p-4 rounded-lg bg-gray-700 text-white border border-gray-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors resize-none"
-                            ></textarea>
+                    <div className="relative">
+                        <textarea
+                            name="message"
+                            rows="4"
+                            required
+                            className="peer w-full bg-transparent border-b-2 border-black py-2 focus:outline-none font-serif text-lg placeholder-transparent resize-none"
+                            placeholder={formText.placeholderMessage}
+                        ></textarea>
+                        <label className="absolute left-0 -top-3.5 font-mono text-[10px] uppercase font-bold transition-all peer-placeholder-shown:text-lg peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[10px] peer-focus:text-black">
+                            {formText.placeholderMessage}
+                        </label>
+                    </div>
 
-                            <motion.button 
-                                type="submit"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 text-gray-50 transition-colors hover:bg-gray-950/50"
-                                style={{border, boxShadow}}
-                            >
-                                {formText.buttonText}
-                                <FiSend className="transition-transform group-hover:-rotate-45 group-active:-rotate-12"/>
-                            </motion.button>
-                        </form>
-                    </motion.div>
-                </div>
-            </div>
-        </section>
+                    <motion.button 
+                        type="submit"
+                        whileHover={{ backgroundColor: "#000", color: "#fff" }}
+                        className="w-full md:w-auto border-2 border-black px-10 py-3 font-bold uppercase tracking-widest flex items-center justify-center gap-3 transition-colors"
+                    >
+                        {formText.buttonText}
+                        <FiSend />
+                    </motion.button>
+                </form>
+            </motion.div>
+        </div>
     );
 };

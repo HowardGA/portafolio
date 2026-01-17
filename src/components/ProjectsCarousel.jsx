@@ -1,6 +1,5 @@
 import { staticProjects } from '../data/projects';
 import { motion } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -12,7 +11,6 @@ import GalleryModal from './GalleryModal';
 import { useLanguage } from '../context/LanguageContext';
 
 export const ProjectsCarousel = () => {
-    const {color, border, boxShadow} = useTheme();
     const [ isModalOpen, setIsModalOpen ] = useState(false);
     const [ selectedProject, setSelectedProject ] = useState(null);
     const { currentContent, lang } = useLanguage();
@@ -42,53 +40,50 @@ export const ProjectsCarousel = () => {
         <>
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
                     {combinedProjects.map((project, index) => (
-                            <Card key={index}>
+                        <Card key={index}>
+                            <div className="border border-black p-1 bg-white">
                                 <ImageGalleryCarousel 
                                     project={project}
                                     onImageClick={openModal}
-                                    className="w-full rounded-lg"
+                                    className="w-full grayscale hover:grayscale-0 transition-all duration-500"
                                 />
-                                <div className="text-white text-center md:text-left">
-                                    <h3 className="text-xl sm:text-2xl font-bold mb-1">{project.title}</h3>
-                                    <p className="text-gray-400 mb-2 text-sm">{project.subtitle}</p>
-                                    <p className="text-gray-300 mb-4">{project.description}</p>
-                                    {project.techStack && project.techStack.length > 0 && (
-                                        <div className="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
+                                <p className="text-[10px] font-mono uppercase mt-1 text-right">Fig. {index + 1} — Documentation View</p>
+                            </div>
+
+                            <div className="flex flex-col flex-grow">
+                                <h3 className="text-3xl font-bold uppercase mb-1 leading-none tracking-tighter">
+                                    {project.title}
+                                </h3>
+                                <p className="font-mono text-xs uppercase text-gray-600 mb-4 italic border-b border-black pb-2">
+                                    Subject: {project.subtitle}
+                                </p>
+                                
+                                <p className="text-sm leading-snug text-justify mb-4">
+                                    {project.description}
+                                </p>
+
+                                <div className="mt-auto">
+                                    {project.techStack && (
+                                        <div className="flex flex-wrap gap-x-4 gap-y-1 mb-6 border-y border-black border-dotted py-2">
                                             {project.techStack.map((tech, i) => (
-                                                <motion.span 
-                                                    key={i} 
-                                                    className="px-2 py-0.5 text-xs font-medium rounded-full"
-                                                    style={{ 
-                                                        backgroundColor: `${color}1A`,
-                                                        color: color, 
-                                                        border: `1px solid ${color}33`
-                                                    }}
-                                                >
-                                                    {tech}
-                                                </motion.span>
+                                                <span key={i} className="text-[10px] font-mono uppercase font-bold">
+                                                    #{tech}
+                                                </span>
                                             ))}
                                         </div>
                                     )}
+
                                     <motion.a 
-                                        whileHover={{
-                                            scale: 1.015
-                                        }}
-                                        whileTap={{
-                                            scale: 0.985
-                                        }}
-                                        style={{
-                                            border, boxShadow,
-                                        }}
                                         href={project.link} 
                                         target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 transition-colors hover:bg-gray-950/50 z-20"
+                                        className="inline-flex items-center gap-2 border-2 border-black px-6 py-2 font-bold uppercase text-sm hover:bg-black hover:text-white transition-all"
                                     >
                                         {buttonText}
-                                    <FiGithub className="transition-transform group-hover:-rotate-45 group-active:-rotate-12"/>
-                                </motion.a>
+                                        <FiGithub />
+                                    </motion.a>
                                 </div>
-                            </Card>
+                            </div>
+                        </Card>
                     ))}
                 </div>
                 {isModalOpen && selectedProject && (

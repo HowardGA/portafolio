@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import { FaHamburger } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
 
-export const Navbar = ({menuOpen, setMenuOpen}) => {
-    const { color, boxShadow, border } = useTheme();
-    const { lang, toggleLanguage, currentContent} = useLanguage();
-
+export const Navbar = ({ menuOpen, setMenuOpen }) => {
+    const { lang, toggleLanguage, currentContent } = useLanguage();
     const navbarContent = currentContent.nav;
 
     useEffect(() => {
@@ -15,59 +12,24 @@ export const Navbar = ({menuOpen, setMenuOpen}) => {
     }, [menuOpen]);
 
     return (
-        <nav className="fixed top-0 w-full z-40 backdrop-blur-lg">
-            <div className="max-w-5xl mx-auto px-4">
-                <div className="flex justify-between items-center h-16">
-                    <a href="#home" className="font-mono text-xl font-bold text-white">
-                        Houster <motion.span 
-                            style={{ color }}
-                        > 
-                        Dev 
-                        </motion.span>
+        <nav className="w-full border-b-2 border-black relative">
+            <div className="max-w-6xl mx-auto px-4">
+                <div className="flex justify-between items-center py-1 border-b border-black/10 text-[9px] font-mono uppercase font-bold">
+                    <span className="hidden sm:inline">Rosarito, MX — 2026</span>
+                    <button onClick={toggleLanguage} className="hover:underline">
+                        Edition: {lang === 'en' ? 'English' : 'Español'}
+                    </button>
+                </div>
+
+                <div className="flex flex-col items-center py-2 md:py-4">
+                    <a href="#home" className="font-serif text-3xl md:text-5xl font-bold text-black tracking-tighter uppercase italic">
+                        Howard Garcia
                     </a>
-                    <div className="w-7 h-5 relative cursor-pointer z-40 md:hidden" onClick={() => {setMenuOpen((prev) => !prev)}}>
-                        <FaHamburger/>
-                    </div>
-                    <div className="hidden md:flex items-center space-x-8">
-                        <motion.a 
-                            href="#home" 
-                            style={{ color }}
-                            >
-                            {navbarContent.home}
-                        </motion.a>
-                        <motion.a 
-                            href="#about" 
-                            style={{ color }}
-                            >
 
-                             {navbarContent.about}
-                        </motion.a>
-                         <motion.a 
-                            href="#projects" 
-                            style={{ color }}
-                            >
-
-                             {navbarContent.projects}
-                        </motion.a>
-                         <motion.a 
-                            href="#clients" 
-                            style={{ color }}
-                            >                          
-                             {navbarContent.clients}
-                        </motion.a>
-                         <motion.a 
-                            href="#contact" 
-                            style={{ color }}
-                            >                          
-                             {navbarContent.contact}
-                        </motion.a>
-                        <motion.button
-                            onClick={toggleLanguage} 
-                            className="px-3 py-1 text-sm font-bold rounded-full border"
-                            style={{border, boxShadow}}
-                        >
-                            {lang === 'en' ? 'ES' : 'EN'}
-                        </motion.button>
+                    <div className="hidden md:flex items-center space-x-6 mt-2 pt-2 border-t border-black w-full justify-center text-[10px] font-mono font-bold uppercase">
+                        {['home', 'about', 'projects', 'clients', 'contact'].map((item) => (
+                            <a key={item} href={`#${item}`} className="hover:italic">{navbarContent[item]}</a>
+                        ))}
                     </div>
                 </div>
             </div>

@@ -5,8 +5,6 @@ import { LoadingScreen } from './components/LoadingScreen'
 import { Navbar } from './components/Navbar'
 import { MobileMenu } from './components/MobileMenu'
 import { Home } from './components/sections/Home'
-import { Stars } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber'
 import {motion} from 'framer-motion'
 import { ThemeProvider, useTheme } from './context/ThemeContext' 
 import { About } from './components/sections/About'
@@ -16,6 +14,7 @@ import { Timeline } from './components/sections/Timeline'
 import Clients from './components/sections/Clients'
 import Footer from './components/Footer';
 import { LanguageProvider } from './context/LanguageContext'
+import { Demos } from './components/sections/Demos'
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -33,31 +32,25 @@ function App() {
 }
 
 function AppContent({ isLoaded, setIsLoaded, menuOpen, setMenuOpen }) {
-  const { backgroundImage } = useTheme(); 
   
   return (
     <>
       {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)}/>}
       <motion.section 
-        style={{backgroundImage}}
-        className='relative min-h-screen overflow-hidden bg-gray-950 text-gray-200'
+        className='relative min-h-screen overflow-hidden'
       >
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
 
-        <div className={`transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"} text-gray-100`}>
+        <div className={`transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
           <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <Home />
           <About />
+          <Demos />
           <Projects />
           <Timeline />
           <Clients />
           <Contact />
           <Footer />
-        </div>
-        <div className='absolute inset-0 z-0 pointer-events-none'>
-          <Canvas>
-            <Stars radius={80} count={10000} factor={10} fade speed={2}/>
-          </Canvas>
         </div>
       </motion.section>
     </>

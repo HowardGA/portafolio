@@ -4,44 +4,26 @@ import { motion } from 'framer-motion';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { useTheme } from '../context/ThemeContext';
+import { FaXmark } from 'react-icons/fa6';
 
 export default function GalleryModal ({ project, onClose }) {
-    const { border, boxShadow} = useTheme();
-
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#f4f1ea]/90 backdrop-blur-md">
             <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                className="relative w-full max-w-4xl max-h-full bg-gray-800 rounded-lg shadow-2xl p-6"
-                style={{ border, boxShadow}}
+                className="relative w-full max-w-5xl bg-[#f4f1ea] border-2 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] p-8"
             >
-                <button 
-                    onClick={onClose} 
-                    className="absolute top-2 right-2 text-white text-3xl z-10"
-                >
-                    &times; 
+                <button onClick={onClose} className="absolute -top-4 -right-4 bg-black text-white p-2 border-2 border-black hover:bg-white hover:text-black transition-colors">
+                   <FaXmark size={24}/>
                 </button>
                 
-                <h3 className="text-white text-xl mb-4">{project.title} Gallery</h3>
+                <div className="border-b border-black mb-6 pb-2">
+                    <h3 className="text-2xl font-bold uppercase italic">Evidence Folder: {project.title}</h3>
+                </div>
 
-                <Swiper
-                    modules={[Navigation, Pagination]}
-                    spaceBetween={10}
-                    slidesPerView={1}
-                    navigation
-                    pagination={{ clickable: true }} 
-                    className="w-full h-[70vh]" 
-                >
+                <Swiper className="w-full h-[60vh] border border-black bg-white">
                     {project.galleryImages.map((imgSrc, index) => (
                         <SwiperSlide key={index}>
-                            <img 
-                                src={imgSrc} 
-                                alt={`${project.title} screenshot ${index + 1}`} 
-                                className="w-full h-full object-contain"
-                            />
+                            <img src={imgSrc} className="w-full h-full object-contain p-4 grayscale hover:grayscale-0 transition-all" />
                         </SwiperSlide>
                     ))}
                 </Swiper>

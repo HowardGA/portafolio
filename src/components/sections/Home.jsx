@@ -1,11 +1,9 @@
 import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 import PFP from "../../assets/pfp2.jpg";
-import { useTheme } from "../../context/ThemeContext";
 import { useLanguage } from "../../context/LanguageContext";
 
 export const Home = () => {
-    const { border, boxShadow } = useTheme();
     const {currentContent} = useLanguage();
 
     const homeContent = currentContent.home;
@@ -13,37 +11,29 @@ export const Home = () => {
     return (
         <section 
             id="home" 
-            className="min-h-screen flex items-center justify-center relative"
+            className="flex flex-col items-center justify-start pt-8 pb-12 relative border-b border-black mx-4"
         >
-            <div className="text-center z-10 px-4">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                        duration: 0.4,
-                        scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-                    }}
-                    style={{
-                        border, boxShadow
-                    }}
-                    className="w-68 h-68 rounded-full overflow-hidden shadow-lg items-center justify-center relative mx-auto mt-10"
-                >
-                    <img
-                        src={PFP}
-                        alt="Howard"
-                        style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover'
-                        }}
+            <div className="w-full max-w-6xl">
+                <div className="border-b-2 border-black py-4 mb-8 text-center uppercase font-bold text-sm tracking-widest">
+                    Available for Freelance • Remote • Hybrid or On site Based in Tijuana B.C, MX • Edition 2026
+                </div>
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div className="md:col-span-2">
+                    <h1 className="text-6xl md:text-9xl font-bold leading-tight">
+                        {homeContent.greeting}
+                    </h1>
+                </div>
+                <div className="border-l-0 md:border-l-[1px] border-black pl-0 md:pl-8">
+                    <img 
+                        src={PFP} 
+                        className="grayscale contrast-125 mb-4 border border-black p-1 bg-white" 
+                        alt="Howard" 
                     />
-                </motion.div>
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 mt-4">
-                    {homeContent.greeting}
-                </h1>
-                <p className="text-gray-400 text-lg mb-8 max-w-lg mx-auto">
-                   {homeContent.title}
-                </p>
+                    <p className="text-sm uppercase ">
+                        {homeContent.title}
+                    </p>
+                </div>
+            </div>
                 <div className="flex justify-center space-x-4">
                 <motion.a 
                     href="#contact"
@@ -53,10 +43,7 @@ export const Home = () => {
                     whileTap={{
                         scale: 0.985
                     }}
-                    style={{
-                        border, boxShadow
-                    }}
-                    className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 text-gray-50 transition-colors hover:bg-gray-950/50"
+                    className="group relative flex w-fit items-center gap-1.5 hover:bg-black px-4 py-2 font-bold border-2 border-black p-1 mt-6 transition-colors hover:text-white"
                 >
                     {homeContent.cta}
                     <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12"/>
