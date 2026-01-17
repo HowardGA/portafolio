@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 const staticContactDetails = [
     { icon: FiMail, link: "mailto:howardisaigarciaarreola@gmail.com" },
     { icon: FiPhone, link: "tel:+526611463164" },
-    { icon: FiMapPin, link: "https://maps.app.goo.gl/YourMapLink" }
+    { icon: FiMapPin }
 ];
 
 export const ContactForm = ({ formspreeAction, onSuccess }) => {
